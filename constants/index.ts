@@ -53,16 +53,16 @@ export const googleProducts = [
       '$152'
     ],
     'offer': {
-      'store_name': 'StockX',
+      'store_name': 'Sneaker Company',
       'store_rating': 4,
       'offer_page_url': 'https://stockx.com/nike-dunk-low-retro-white-black-gs?country=US&currencyCode=USD&size=7Y&srsltid=AfmBOor2AAzEMe13SaEn51HS1G4ybCi2zdp-ws-znvRgoduFQCXWIjSQLy4',
       'store_review_count': 30508,
       'store_reviews_page_url': 'https://www.google.com/shopping/ratings/account/metrics?q=stockx.com&c=US&v=19&hl=en',
-      'price': '$106.00',
+      'price': '$125.00',
       'shipping': '$21.31 delivery',
       'tax': '+$11.66 est. tax',
-      'on_sale': false,
-      'original_price': null,
+      'on_sale': true,
+      'original_price': '$250.00',
       'product_condition': 'NEW'
     }
   },

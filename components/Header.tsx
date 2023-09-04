@@ -5,10 +5,21 @@ import {navLinks} from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import BackgroundOverlay from '@/components/BackgroundOverlay'
+import Button from '@/components/Button'
 
 interface INavbar {
   isOpen: boolean
   triggerMenuClose: MouseEventHandler<HTMLButtonElement>
+}
+
+interface IHeader {
+  cartItems: {
+    productName: string,
+    productPrice: string,
+    productNum: number,
+    productImage: string
+  }
+  setCart: React.Dispatch<React.SetStateAction<any>>
 }
 
 const Navbar = ({isOpen, triggerMenuClose}: INavbar) => {
@@ -36,10 +47,25 @@ const Navbar = ({isOpen, triggerMenuClose}: INavbar) => {
     </nav>
   )
 }
-const Header = () => {
+const Header = ({cartItems, setCart}: IHeader) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
   const triggerMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const triggerCart = () => {
+    setIsCartOpen(!isCartOpen)
+  }
+
+  function removeCartItem() {
+    setCart({
+      productName: cartItems.productName,
+      productPrice: cartItems.productPrice,
+      productNum: 0,
+      productImage: cartItems.productImage
+    })
   }
 
   return (
@@ -53,11 +79,58 @@ const Header = () => {
         <Image src="/images/logo.svg" alt="Logo" width={132} height={20}/>
         <Navbar isOpen={isMobileMenuOpen} triggerMenuClose={triggerMobileMenu}/>
       </div>
+
       <div id="right-menu" className="flex items-center gap-4 lg:gap-8">
-        <Image src="/icons/icon-cart.svg" alt="icon-cart" width={22} height={20}/>
+        <div id="right-menu__cart" className="relative">
+          <Button buttonHandler={triggerCart}>
+            <Image src="/icons/icon-cart.svg" alt="icon-cart" width={22} height={20}/>
+          </Button>
+          {cartItems.productNum !== 0 && (
+            <div
+              className="right-menu__cart-badge absolute -right-4 -top-3 rounded-full bg-theme-orange px-3 py-0.5 text-xs font-bold text-white">
+              {cartItems.productNum}
+            </div>
+          )}
+        </div>
         <Image src="/images/image-avatar.png" alt="avatar" width={100} height={100}
                className="h-6 w-6 object-cover lg:h-[3.125rem] lg:w-[3.125rem]"/>
       </div>
+
+      {isCartOpen && (
+        <div id="shopping-cart"
+             className="absolute left-0 top-[4.5rem] z-50 w-full p-2 lg:left-auto lg:right-28 lg:top-28 lg:w-[400px]">
+          <div id="shopping-cart__content"
+               className="divide-y divide-theme-smoke-normal rounded-md bg-white shadow-2xl">
+            <div id="shopping-cart__header" className="rounded-xl p-6 pb-7">
+              <h1 className="font-bold text-theme-black">Cart</h1>
+            </div>
+            {cartItems.productNum !== 0 ? (
+              <div id="shopping-cart__body" className="flex flex-col gap-5 p-6 pb-8 lg:gap-6">
+                <div id="shopping-cart__body-item" className="flex items-center gap-4">
+                  <Image src={cartItems.productImage} alt="Product Image" width={50} height={50}
+                         className="rounded-lg"/>
+
+                  <div id="shopping-cart__body-item__text" className="flex flex-1 flex-col text-theme-gray-normal">
+                    <p className="">{cartItems.productName}</p>
+                    <p>{cartItems.productPrice} x {cartItems.productNum}</p>
+                  </div>
+
+                  <Button buttonHandler={removeCartItem}>
+                    <Image src="/icons/icon-delete.svg" alt="Icon Delete" width={14} height={16}/>
+                  </Button>
+                </div>
+
+                <Button buttonHandler={() => {
+                }} customClass="rounded-xl bg-theme-orange text-white font-bold text-center py-5 w-full">
+                  Checkout
+                </Button>
+              </div>
+            ) : (
+              <p className="w-full py-20 text-center font-bold text-theme-gray-normal">Your cart is empty.</p>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   )
 }
