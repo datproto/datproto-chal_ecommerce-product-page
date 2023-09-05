@@ -30,7 +30,7 @@ const Navbar = ({isOpen, triggerMenuClose}: INavbar) => {
 
   return (
     <nav
-      className={`absolute top-0 z-50 flex h-full w-2/3 transform flex-col gap-10 bg-white p-6 lg:relative lg:flex-row ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
+      className={`absolute top-0 z-[100] flex h-full w-2/3 transform flex-col gap-10 bg-white p-6 lg:relative lg:flex-row ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
       <button type="button" onClick={triggerMenuClose}>
         <Image src="/icons/icon-close.svg" alt="Close Button" width={14} height={15}/>
       </button>

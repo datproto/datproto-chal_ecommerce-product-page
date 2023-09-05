@@ -20,8 +20,6 @@ export default function Home() {
 
   const screenWidth = useWindowSize()
 
-  console.log(cartItems)
-
   return (
     <>
       <Header
