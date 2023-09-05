@@ -15,7 +15,7 @@ interface INavbar {
 interface IHeader {
   cartItems: {
     productName: string,
-    productPrice: string,
+    productPrice: number,
     productNum: number,
     productImage: string
   }
@@ -100,7 +100,7 @@ const Header = ({cartItems, setCart}: IHeader) => {
         <div id="shopping-cart"
              className="absolute left-0 top-[4.5rem] z-50 w-full p-2 lg:left-auto lg:right-28 lg:top-28 lg:w-[400px]">
           <div id="shopping-cart__content"
-               className="divide-y divide-theme-smoke-normal rounded-md bg-white shadow-2xl">
+               className="divide-y divide-theme-smoke-normal rounded-lg bg-white shadow-2xl">
             <div id="shopping-cart__header" className="rounded-xl p-6 pb-7">
               <h1 className="font-bold text-theme-black">Cart</h1>
             </div>
@@ -112,7 +112,8 @@ const Header = ({cartItems, setCart}: IHeader) => {
 
                   <div id="shopping-cart__body-item__text" className="flex flex-1 flex-col text-theme-gray-normal">
                     <p className="">{cartItems.productName}</p>
-                    <p>{cartItems.productPrice} x {cartItems.productNum}</p>
+                    <p>${cartItems.productPrice} x {cartItems.productNum} <span
+                      className="font-bold text-theme-black">${cartItems.productPrice * cartItems.productNum}</span></p>
                   </div>
 
                   <Button buttonHandler={removeCartItem}>

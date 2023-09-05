@@ -13,7 +13,7 @@ export default function Home() {
   const [cartItems, setCartItems] = useState(
     {
       productName: '',
-      productPrice: '',
+      productPrice: 0,
       productNum: 0,
       productImage: ''
     })

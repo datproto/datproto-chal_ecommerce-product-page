@@ -51,7 +51,7 @@ const ProductDetail = ({
     setCart(
       {
         productName: product_title,
-        productPrice: price.current,
+        productPrice: convertCurrencyStringToNumber(price.current),
         productNum: cartItemsNumber += productCounter,
         productImage: product_images[0]
       }
