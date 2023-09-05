@@ -87,7 +87,7 @@ const Header = ({cartItems, setCart}: IHeader) => {
           </Button>
           {cartItems.productNum !== 0 && (
             <div
-              className="right-menu__cart-badge absolute -right-4 -top-3 rounded-full bg-theme-orange px-3 py-0.5 text-xs font-bold text-white">
+              className="right-menu__cart-badge absolute -right-4 -top-3 rounded-full bg-theme-orange px-2 py-0.5 text-xs font-bold text-white">
               {cartItems.productNum}
             </div>
           )}

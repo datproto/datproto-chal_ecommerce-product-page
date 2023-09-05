@@ -3,28 +3,34 @@ import Button from '@/components/Button'
 import Image from 'next/image'
 import Badge from '@/components/Badge'
 import {convertCurrencyStringToNumber} from '@/utils'
+import ProductModal from '@/components/ProductModal'
 
 interface IProductDetail {
   store: string
   product_title: string
   product_description: string
-  product_image: string
+  product_images: string[]
   price: {
     original?: string | null
     current: string
   }
   setCart: React.Dispatch<React.SetStateAction<any>>
   cartItemsNumber: number
+
+  isOpenModal?: boolean
+  setOpenProductModal?: React.Dispatch<React.SetStateAction<any>>
 }
 
 const ProductDetail = ({
                          store,
                          product_title,
                          product_description,
-                         product_image,
+                         product_images,
                          price,
                          setCart,
-                         cartItemsNumber
+                         cartItemsNumber,
+                         isOpenModal,
+                         setOpenProductModal
                        }: IProductDetail) => {
   const [productCounter, setProductCounter] = useState(0)
 
@@ -46,7 +52,7 @@ const ProductDetail = ({
         productName: product_title,
         productPrice: price.current,
         productNum: cartItemsNumber += productCounter,
-        productImage: product_image
+        productImage: product_images[0]
       }
     )
   }
@@ -60,7 +66,7 @@ const ProductDetail = ({
   }
 
   return (
-    <div id="product-detail" className="flex-1">
+    <div id="product-detail" className="flex-1 xl:w-3/5">
       <div id="product-detail__information" className="flex flex-col gap-4 p-6">
         <h2
           className="text-sm font-bold uppercase tracking-[0.125rem] text-theme-orange"
@@ -68,7 +74,7 @@ const ProductDetail = ({
           {store}
         </h2>
         <h1
-          className="text-[1.5rem] font-bold leading-8 text-theme-black lg:text-[3rem] lg:leading-[3rem] 2xl:text-[4.5rem]">
+          className="text-[1.5rem] font-bold leading-8 text-theme-black lg:text-[3rem] lg:leading-[3rem] xl:mb-4 2xl:text-[4.5rem] 2xl:leading-[1em]">
           {product_title}
         </h1>
         {/* eslint-disable-next-line */}
@@ -76,7 +82,7 @@ const ProductDetail = ({
           className="text-[0.9375rem] leading-6 text-theme-gray-normal lg:text-[1rem] 2xl:text-[1.5rem] 2xl:leading-9">
           {product_description}
         </p>
-        <div id="product__price" className="flex w-full items-center lg:flex-col lg:items-start">
+        <div id="product__price" className="flex w-full items-center lg:mb-4 lg:flex-col lg:items-start lg:gap-2">
           <div id="price__new" className="flex items-center gap-4">
             <div className="price__current">
               <p className="text-3xl font-bold text-theme-black">
@@ -110,7 +116,8 @@ const ProductDetail = ({
           </div>
 
           <Button type="button"
-                  customClass="flex items-center lg:flex-1 font-bold bg-theme-orange w-full text-white rounded-xl justify-center gap-4 py-4 shadow-theme-orange"
+                  customClass="flex items-center lg:flex-1 font-bold bg-theme-orange w-full text-white rounded-xl
+                               justify-center gap-4 py-4 shadow-theme-orange"
                   buttonHandler={addProductToCart}>
             <Image src="icons/icon-cart.svg" alt="Icon Cart" width={22} height={20} className="text-white"/>
             Add to cart
@@ -118,6 +125,8 @@ const ProductDetail = ({
         </div>
       </div>
 
+      <ProductModal productPhotos={product_images} isOpenProductModal={isOpenModal}
+                    setOpenProductModal={setOpenProductModal}/>
     </div>
   )
 }
