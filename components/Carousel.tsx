@@ -3,6 +3,8 @@
 import React, {useState} from 'react'
 import Image from 'next/image'
 import Button from '@/components/Button'
+import PrevIcon from '@/components/icons/PrevIcon'
+import NextIcon from '@/components/icons/NextIcon'
 
 interface ICarousel {
   needControl: boolean
@@ -52,19 +54,14 @@ const Carousel = ({
             <div id="carousel-buttons"
                  className="absolute z-30 flex h-full w-full items-center justify-between px-4 lg:px-0">
               <Button buttonHandler={prevImageHandler}
-                      customClass="bg-white p-6 lg:p-8 relative rounded-full shadow-md lg:-ml-8">
-                <Image src="/icons/icon-previous.svg"
-                       className="l-0 r-0 t-0 absolute m-auto h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 object-none"
-                       alt="Icon Prev" width={12}
-                       height={18}/>
+                      customClass="group bg-white p-4 lg:p-8 relative rounded-full shadow-md lg:-ml-11">
+                <PrevIcon
+                  className="h-[15px] w-[13px] fill-none stroke-black stroke-[3] transition-all group-hover:stroke-theme-orange lg:h-[25px] lg:w-[22px]"/>
               </Button>
               <Button buttonHandler={nextImageHandler}
-                      customClass="bg-white p-6 lg:p-8 relative rounded-full shadow-md lg:-mr-8">
-                <Image src="/icons/icon-next.svg"
-                       className="l-0 r-0 t-0 absolute m-auto h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 object-none"
-                       alt="Icon Next"
-                       width={13}
-                       height={18}/>
+                      customClass="group bg-white p-4 lg:p-8 relative rounded-full shadow-md lg:-mr-11">
+                <NextIcon
+                  className="h-[15px] w-[13px] fill-none stroke-black stroke-[3] transition-all group-hover:stroke-theme-orange lg:h-[24px] lg:w-[22px]"/>
               </Button>
             </div>
           )}

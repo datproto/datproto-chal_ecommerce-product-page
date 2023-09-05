@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Badge from '@/components/Badge'
 import {convertCurrencyStringToNumber} from '@/utils'
 import ProductModal from '@/components/ProductModal'
+import CartIcon from '@/components/icons/CartIcon'
 
 interface IProductDetail {
   store: string
@@ -119,7 +120,7 @@ const ProductDetail = ({
                   customClass="flex items-center lg:flex-1 font-bold bg-theme-orange w-full text-white rounded-xl
                                justify-center gap-4 py-4 shadow-theme-orange"
                   buttonHandler={addProductToCart}>
-            <Image src="icons/icon-cart.svg" alt="Icon Cart" width={22} height={20} className="text-white"/>
+            <CartIcon className="width-[20px] h-[20px] fill-white"/>
             Add to cart
           </Button>
         </div>
