@@ -30,17 +30,19 @@ const Navbar = ({isOpen, triggerMenuClose}: INavbar) => {
 
   return (
     <nav
-      className={`absolute top-0 z-[100] flex h-full w-2/3 transform flex-col gap-10 bg-white p-6 lg:relative lg:flex-row ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
-      <button type="button" onClick={triggerMenuClose}>
+      className={`absolute top-0 z-[90] flex h-full w-2/3 transform flex-col gap-10 bg-transparent p-6 lg:relative lg:w-auto lg:flex-row ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
+      <button type="button" onClick={triggerMenuClose} className="lg:hidden">
         <Image src="/icons/icon-close.svg" alt="Close Button" width={14} height={15}/>
       </button>
       <ul className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
         {navLinks.map(link => (
-          <li key={link.key}>
+          <li key={link.key} className="group relative">
             <Link href={link.href}
                   className="text-[1.125rem] font-bold text-theme-black lg:text-[0.9375rem] lg:font-normal lg:text-theme-gray-normal">
               {link.text}
             </Link>
+            <div
+              className="absolute -bottom-[3rem] hidden h-1 w-full bg-transparent transition-all group-hover:bg-theme-orange lg:block"/>
           </li>
         ))}
       </ul>
@@ -93,7 +95,7 @@ const Header = ({cartItems, setCart}: IHeader) => {
           )}
         </div>
         <Image src="/images/image-avatar.png" alt="avatar" width={100} height={100}
-               className="h-6 w-6 object-cover lg:h-[3.125rem] lg:w-[3.125rem]"/>
+               className="h-6 w-6 cursor-pointer rounded-full object-cover outline transition-all duration-500 ease-in-out lg:h-[3.125rem] lg:w-[3.125rem] lg:hover:outline-2 lg:hover:outline-theme-orange"/>
       </div>
 
       {isCartOpen && (
