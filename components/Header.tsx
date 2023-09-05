@@ -30,7 +30,7 @@ const Navbar = ({isOpen, triggerMenuClose}: INavbar) => {
 
   return (
     <nav
-      className={`absolute top-0 z-[90] flex h-full w-2/3 transform flex-col gap-10 bg-transparent p-6 lg:relative lg:w-auto lg:flex-row ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
+      className={`absolute top-0 z-[90] flex h-full w-2/3 transform flex-col gap-10 bg-white p-6 lg:relative lg:w-auto lg:flex-row lg:bg-transparent ${isOpen ? 'left-0' : 'left-[-70%]'} transition-all lg:left-0`}>
       <button type="button" onClick={triggerMenuClose} className="lg:hidden">
         <Image src="/icons/icon-close.svg" alt="Close Button" width={14} height={15}/>
       </button>
@@ -74,7 +74,7 @@ const Header = ({cartItems, setCart}: IHeader) => {
     <header className="flex items-center justify-between border-b border-b-theme-smoke-normal bg-white p-6">
       {isMobileMenuOpen && <BackgroundOverlay/>}
 
-      <div id="left-menu" className="flex items-center gap-4 lg:gap-0">
+      <div id="left-menu" className="flex items-center gap-4 lg:gap-10">
         <button type="button" onClick={triggerMobileMenu} className="lg:hidden">
           <Image src="/icons/icon-menu.svg" alt="Menu Icon" width={16} height={15}/>
         </button>
